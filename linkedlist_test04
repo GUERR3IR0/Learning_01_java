@@ -1,0 +1,40 @@
+import java.util.LinkedList;
+public class Main
+{
+	public static void main(String[] args) {
+		LinkedList<Integer> numeros = new LinkedList<>();
+	   LinkedList<Integer> numerosunicos = new LinkedList<>();
+   LinkedList<Integer> contagem_numeros = new LinkedList<>();
+	 numeros.add(10);
+	 numeros.add(20);
+     numeros.add(30);
+     numeros.add(40);
+     numeros.add(50);
+     numeros.add(10);
+	 numeros.add(20);
+     numeros.add(30);
+     numeros.add(40);
+     numeros.add(50);
+
+      for (int i = 0; i < numeros.size(); i++) {
+            int numatual = numeros.get(i);
+
+            if (numerosunicos.contains(numatual)) {
+                continue;
+            }
+
+            int contagem = 0;
+            for (int j = 0; j < numeros.size(); j++) {
+                if (numeros.get(j).equals(numatual)) {
+                    contagem++;
+                }
+            }
+
+            numerosunicos.add(numatual);
+            contagem_numeros.add(contagem);
+        }
+
+     System.out.println("a lista de numeros é  " + numerosunicos);
+     System.out.println("cada numero aparece respectivamente" + contagem_numeros);
+	}
+}
