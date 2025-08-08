@@ -1,0 +1,29 @@
+import java.util.LinkedList;
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+		LinkedList<String> frutas = new LinkedList<>();
+		Scanner procurafruta = new Scanner(System.in); 
+		frutas.add("maçã");
+		frutas.add("pera");
+		frutas.add("melancia");
+		frutas.add("melão");
+		frutas.add("morango");
+		System.out.println(" as frutas são: "+ frutas);
+		
+		frutas.remove("maçã");
+				System.out.println(" agora as frutas são:" + frutas );
+			
+    System.out.println("diga uma fruta para procura");
+   String  fruta = procurafruta.nextLine();  
+     if( frutas.contains(fruta)){
+         System.out.println(" a fruta está na lista");
+     }
+				else{
+				 System.out.println(" a fruta não está na lista");
+
+				}
+
+	}
+}
