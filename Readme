@@ -1,7 +1,1 @@
-echo "# Learning_1" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/GUERR3IR0/Learning_1.git
-git push -u origin main
+This is just for practice, some of the projects here maybe can turn in full projects for my portfolio but that's not my intention
