@@ -1,14 +1,15 @@
 
 import java.util.HashMap;
-
+import java.util.Scanner;
 public class Main
 {
 	public static void main(String[] args) {
-	HashMap<String, Integer> pessoas = new HashMap<>();
-	pessoas.put("joão", 12);
-	pessoas.put("ana", 13);
-	pessoas.put ("clarice",22);
+	HashMap<String, Integer> people= new HashMap<>();
+	Scanner search_age = new Scanner;
+	people.put("joão", 12);
+	people.put("ana", 13);
+	people.put ("clarice",22);
 	
-	System.out.println(pessoas);
+	System.out.println("");
 	}
 }
