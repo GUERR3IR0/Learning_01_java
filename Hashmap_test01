@@ -1,0 +1,14 @@
+
+import java.util.HashMap;
+
+public class Main
+{
+	public static void main(String[] args) {
+	HashMap<String, Integer> pessoas = new HashMap<>();
+	pessoas.put("joão", 12);
+	pessoas.put("ana", 13);
+	pessoas.put ("clarice",22);
+	
+	System.out.println(pessoas);
+	}
+}
