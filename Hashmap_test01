@@ -18,6 +18,6 @@ public class Main
 	 }
 	 else 
 	 System.out.println("Theres no one with that name");
-
+search_age.close();
 	}
 }
