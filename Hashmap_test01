@@ -1,15 +1,23 @@
-
 import java.util.HashMap;
 import java.util.Scanner;
 public class Main
 {
 	public static void main(String[] args) {
 	HashMap<String, Integer> people= new HashMap<>();
-	Scanner search_age = new Scanner;
+   Scanner search_age = new Scanner(System.in);
 	people.put("joão", 12);
 	people.put("ana", 13);
 	people.put ("clarice",22);
 	
-	System.out.println("");
+	System.out.println("enter a name for the search of age: ");
+   String username = search_age.nextLine();
+	 Integer age = people.get(username.toLowerCase());
+	 
+	 if (age != null){
+	     System.out.println(" the age of " + username + " is " + age);
+	 }
+	 else 
+	 System.out.println("Theres no one with that name");
+
 	}
 }
