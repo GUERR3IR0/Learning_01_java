@@ -3,23 +3,26 @@ import java.util.Scanner;
 import java.util.Map;
 public class Main
 {
-	public static void main(String[] args) {
-	HashMap<String, Integer> people= new HashMap<>();
-	   Scanner input = new Scanner(System.in);
-
-
-	while (true){
-		 
-        System.out.println(" Welcome to the register of people! \n please select a option \n 1- enter a new name and age \n 2-search a person \n 3-list \n 4-remove a person \n 5- exit ");
-        if (input.hasNextInt()){
-        Integer menu_op = input.nextInt();
-        input.nextLine();
-        
-      switch( menu_op){
-           
-       case 1 :
-            System.out.println("enter the name of the person: ");
+	 private static HashMap<String, Integer> people = new HashMap<>();
+    private static Scanner input = new Scanner(System.in);
+		
+		public static String searchperson(){
+	    System.out.println(" enter a name for search: ");
+      String user_search = input.nextLine();
+	 Integer user_age = people.get(user_search.toLowerCase());
+	 if (user_age != null){
+	     System.out.println( user_search + " : " + user_age + " years");
+	 }
+	 else {
+	 System.out.println("Theres no one with that name \n \n ");
+	 }
+	 return user_search;
+	}
+	
+	public static void register(){
+	    System.out.println("enter the name of the person: ");
             String	person_name = input.nextLine();
+            person_name = person_name.toLowerCase();
             System.out.println("enter the age of the person: ");
             if(input.hasNextInt()){
             Integer person_age = input.nextInt();
@@ -31,18 +34,25 @@ public class Main
                 System.out.println("the age is invalid");
                 input.nextLine();
             }
+	}
+	
+	public static void main(String[] args) {
+
+	while (true){
+		 
+        System.out.println(" Welcome to the register of people! \n please select a option \n 1- enter a new name and age \n 2-search a person \n 3-list \n 4-remove a person \n 5- exit ");
+        if (input.hasNextInt()){
+        Integer menu_op = input.nextInt();
+        input.nextLine();
+        
+      switch( menu_op){
+           
+       case 1 :
+           register();
              break;
         
         case 2:
-	System.out.println("enter a name for search: ");
-   String user_search = input.nextLine();
-	 Integer user_age = people.get(user_search.toLowerCase());
-	 if (user_age != null){
-	     System.out.println( user_search + " is " + user_age + " years old");
-	 }
-	 else {
-	 System.out.println("Theres no one with that name \n \n ");
-	 }
+	searchperson();
         break;
         
     case 3:
@@ -52,14 +62,9 @@ System.out.println("name: " + entry.getKey() + ", age: " + entry.getValue());
          break;
          
     case 4:
-            	 System.out.println("Enter the name of the person you want to remove: ");
-            	 String remove_person = input.nextLine();
-            	if (people.remove(remove_person.toLowerCase()) != null){
-            	 System.out.println("The person and their data was removed ");
-            	}
-            	else{
-            	   System.out.println("The person was not in our database ");
-            	}
+            	String removed_user = searchperson();
+            	people.remove(removed_user);
+            	System.out.println("The user is removed");
             	break;
 
     case 5:
@@ -76,5 +81,8 @@ System.out.println("name: " + entry.getKey() + ", age: " + entry.getValue());
 	    input.nextLine();
 	}
 	}
+
+	    
+	    
 	}
 }
