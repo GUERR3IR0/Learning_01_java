@@ -63,8 +63,12 @@ System.out.println("name: " + entry.getKey() + ", age: " + entry.getValue());
          
     case 4:
             	String removed_user = searchperson();
-            	people.remove(removed_user);
+            	if(people.remove(removed_user) != null){
             	System.out.println("The user is removed");
+            	}
+            	else{
+            	  System.out.println("user was not found ");
+            	}
             	break;
 
     case 5:
@@ -81,6 +85,6 @@ System.out.println("name: " + entry.getKey() + ", age: " + entry.getValue());
 	    input.nextLine();
 	}
 	}
-  
+
 	}
 }
