@@ -81,8 +81,6 @@ System.out.println("name: " + entry.getKey() + ", age: " + entry.getValue());
 	    input.nextLine();
 	}
 	}
-
-	    
-	    
+  
 	}
 }
