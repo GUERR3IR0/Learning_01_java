@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Map;
 public class Main
 {
 	public static void main(String[] args) {
@@ -8,19 +9,28 @@ public class Main
 
 
 	while (true){
-		System.out.println(" Welcome to the register of people! \n please select a option \n 1- enter a new name and age \n 2-search a person \n 3-exit ");
+		System.out.println(" Welcome to the register of people! \n please select a option \n 1- enter a new name and age \n 2-search a person \n 3-list \n 4-exit ");
         if (input.hasNextInt()){
         Integer menu_op = input.nextInt();
         input.nextLine();
-        if( menu_op == 1 ){
+        switch( menu_op){
+            case 1 :
             System.out.println("enter the name of the person: ");
             String	person_name = input.nextLine();
             System.out.println("enter the age of the person: ");
+            if(input.hasNextInt()){
             Integer person_age = input.nextInt();
             people.put(person_name, person_age);
+            
              System.out.println("person is now registered! \n ");
-        }
-        if ( menu_op == 2){
+            }
+            else{
+                System.out.println("the age is invalid");
+                input.nextLine();
+            }
+             break;
+        
+        case 2:
 	System.out.println("enter a name for search: ");
    String user_search = input.nextLine();
 	 Integer user_age = people.get(user_search.toLowerCase());
@@ -30,17 +40,21 @@ public class Main
 	 else {
 	 System.out.println("Theres no one with that name \n \n ");
 	 }
-        }
-         if (menu_op == 3 ){
+        break;
+         case 3:
+for (Map.Entry<String, Integer> entry : people.entrySet()) 
+System.out.println("name: " + entry.getKey() + ", age: " + entry.getValue());         
+         break;
+         case 4:
             input.close();
             return;
-	}
-	 if (menu_op <1 || menu_op > 3){
-	    System.out.println(" error in the option please try again \n \n ");
 
-	 }
+	 default:
+	    System.out.println(" error in the option please try again \n \n ");
+ break;
+	 
 	}
-	else{
+	}else{
 	    System.out.println(" error in the option please try again \n \n ");
 	    input.nextLine();
 	}
