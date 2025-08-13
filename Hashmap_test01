@@ -4,20 +4,36 @@ public class Main
 {
 	public static void main(String[] args) {
 	HashMap<String, Integer> people= new HashMap<>();
-   Scanner search_age = new Scanner(System.in);
-	people.put("joão", 12);
-	people.put("ana", 13);
-	people.put ("clarice",22);
-	
-	System.out.println("enter a name for the search of age: ");
-   String username = search_age.nextLine();
-	 Integer age = people.get(username.toLowerCase());
-	 
-	 if (age != null){
-	     System.out.println(" the age of " + username + " is " + age);
+	   Scanner input = new Scanner(System.in);
+
+	Integer  loop_1 = 0;
+	while (loop_1 == 0){
+		System.out.println(" Welcome to the register of people! \n please select a option \n 1- enter a new name and age \n 2-search a person \n 3-exit ");
+        Integer menu_op = input.nextInt();
+        input.nextLine();
+        if( menu_op == 1 ){
+            System.out.println("enter the name of the person: ");
+            String	person_name = input.nextLine();
+            System.out.println("enter the age of the person: ");
+            Integer person_age = input.nextInt();
+            people.put(person_name, person_age);
+             System.out.println("person is now registered! ");
+        }
+        if ( menu_op == 2){
+	System.out.println("enter a name for search: ");
+   String user_search = input.nextLine();
+	 Integer user_age = people.get(user_search.toLowerCase());
+	 if (user_age != null){
+	     System.out.println( user_search + " is " + user_age + "years old");
 	 }
-	 else 
-	 System.out.println("Theres no one with that name");
-search_age.close();
+	 else {
+	 System.out.println("Theres no one with that name \n");
+	 }
+        }
+         if (menu_op == 3 ){
+            input.close();
+            return;
+	}
+	}
 	}
 }
