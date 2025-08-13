@@ -10,7 +10,7 @@ public class Main
 
 	while (true){
 		 
-        System.out.println(" Welcome to the register of people! \n please select a option \n 1- enter a new name and age \n 2-search a person \n 3-list \n 4-exit ");
+        System.out.println(" Welcome to the register of people! \n please select a option \n 1- enter a new name and age \n 2-search a person \n 3-list \n 4-remove a person \n 5- exit ");
         if (input.hasNextInt()){
         Integer menu_op = input.nextInt();
         input.nextLine();
@@ -46,14 +46,26 @@ public class Main
         break;
         
     case 3:
-for (Map.Entry<String, Integer> entry : people.entrySet()) 
-System.out.println("name: " + entry.getKey() + ", age: " + entry.getValue());         
+for (Map.Entry<String, Integer> entry : people.entrySet()){
+System.out.println("name: " + entry.getKey() + ", age: " + entry.getValue());  
+}
          break;
          
     case 4:
-            input.close();
-            return;
+            	 System.out.println("Enter the name of the person you want to remove: ");
+            	 String remove_person = input.nextLine();
+            	if (people.remove(remove_person.toLowerCase()) != null){
+            	 System.out.println("The person and their data was removed ");
+            	}
+            	else{
+            	   System.out.println("The person was not in our database ");
+            	}
+            	break;
 
+    case 5:
+         input.close();
+            return;
+	 
 	 default:
 	    System.out.println(" error in the option please try again \n \n ");
  break;
