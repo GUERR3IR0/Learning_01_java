@@ -1,11 +1,48 @@
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Map;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
 public class Main
 {
 	 private static HashMap<String, Integer> people = new HashMap<>();
     private static Scanner input = new Scanner(System.in);
-		
+	private static final String FILE_NAME = "people.txt";
+	
+	public static void savepeopletofile(){
+	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
+   for(Map.Entry<String, Integer> entry : people.entrySet()){
+	       writer.write(entry.getKey() + "," + entry.getValue());
+           writer.newLine();
+	   }
+} catch (IOException e) {
+    System.out.println("Erro ao salvar no arquivo: " + e.getMessage());
+}
+	    
+	}
+	public static void loadfromfile(){
+	    
+	    try(BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))){
+	   String metric;
+  while ((metric = reader.readLine()) != null) {
+    String[] splits = metric.split(",");
+    if (splits.length == 2) {
+        String name = splits[0];
+        int age = Integer.parseInt(splits[1]);
+        people.put(name, age);
+    }
+}
+	    }catch(FileNotFoundException e) {
+    System.out.println("Arquivo de dados não encontrado. Um novo será criado ao salvar.");
+} catch (IOException e) {
+    System.out.println("Erro ao ler o arquivo: " + e.getMessage());
+}
+	}
+	
 		public static String searchperson(){
 	    System.out.println(" enter a name for search: ");
       String user_search = input.nextLine();
@@ -37,9 +74,8 @@ public class Main
 	}
 	
 	public static void main(String[] args) {
-
+loadfromfile();
 	while (true){
-		 
         System.out.println(" Welcome to the register of people! \n please select a option \n 1- enter a new name and age \n 2-search a person \n 3-list \n 4-remove a person \n 5- exit ");
         if (input.hasNextInt()){
         Integer menu_op = input.nextInt();
@@ -49,6 +85,7 @@ public class Main
            
        case 1 :
            register();
+             savepeopletofile();
              break;
         
         case 2:
@@ -56,6 +93,7 @@ public class Main
         break;
         
     case 3:
+System.out.println("--List of people-- \n \n");
 for (Map.Entry<String, Integer> entry : people.entrySet()){
 System.out.println("name: " + entry.getKey() + ", age: " + entry.getValue());  
 }
@@ -63,16 +101,18 @@ System.out.println("name: " + entry.getKey() + ", age: " + entry.getValue());
          
     case 4:
             	String removed_user = searchperson();
-            	if(people.remove(removed_user) != null){
+            	if(people.remove(removed_user.toLowerCase()) != null){
             	System.out.println("The user is removed");
             	}
             	else{
             	  System.out.println("user was not found ");
             	}
+            	savepeopletofile();
             	break;
 
     case 5:
          input.close();
+            savepeopletofile();
             return;
 	 
 	 default:
