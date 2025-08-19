@@ -1,3 +1,4 @@
+import hashmap_4fun;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Map;
@@ -9,15 +10,16 @@ import java.io.FileReader;
 import java.io.FileNotFoundException;
 public class Main
 {
-	 private static HashMap<String, Integer> people = new HashMap<>();
+	 private static HashMap<String, pessoa > people = new HashMap<>();
     private static Scanner input = new Scanner(System.in);
 	private static final String FILE_NAME = "people.txt";
 	
 	public static void savepeopletofile(){
 	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
    for(Map.Entry<String, Integer> entry : people.entrySet()){
-	       writer.write(entry.getKey() + "," + entry.getValue());
-           writer.newLine();
+	       Person person = entry.getValue(); 
+            writer.write(pessoa.getName() + "," + pessoa.getAge()); 
+            writer.newLine();
 	   }
 } catch (IOException e) {
     System.out.println("Erro ao salvar no arquivo: " + e.getMessage());
@@ -33,7 +35,8 @@ public class Main
     if (splits.length == 2) {
         String name = splits[0];
         int age = Integer.parseInt(splits[1]);
-        people.put(name, age);
+        Person person = new Person(name, age);
+                people.put(name, person);
     }
 }
 	    }catch(FileNotFoundException e) {
@@ -46,9 +49,9 @@ public class Main
 		public static String searchperson(){
 	    System.out.println(" enter a name for search: ");
       String user_search = input.nextLine();
-	 Integer user_age = people.get(user_search.toLowerCase());
-	 if (user_age != null){
-	     System.out.println( user_search + " : " + user_age + " years");
+	  Person personfound = people.get(user_search.toLowerCase());
+	 if (personfound != null){
+	     System.out.println( user_search + " : " + personfound.getAge()+ " years");
 	 }
 	 else {
 	 System.out.println("Theres no one with that name \n \n ");
@@ -58,23 +61,22 @@ public class Main
 	
 	public static void register(){
 	    System.out.println("enter the name of the person: ");
-            String	person_name = input.nextLine();
-            person_name = person_name.toLowerCase();
-            System.out.println("enter the age of the person: ");
-            if(input.hasNextInt()){
-            Integer person_age = input.nextInt();
-            people.put(person_name, person_age);
-            
-             System.out.println("person is now registered! \n ");
-            }
-            else{
-                System.out.println("the age is invalid");
-                input.nextLine();
-            }
+    String person_name = input.nextLine().toLowerCase();
+    System.out.println("enter the age of the person: ");
+    if (input.hasNextInt()) {
+        Integer person_age = input.nextInt();
+        input.nextLine();
+        Pessoa novaPessoa = new Pessoa(person_name, person_age);
+        people.put(person_name, novaPessoa);
+        System.out.println("person is now registered! \n ");
+    } else {
+        System.out.println("the age is invalid");
+        input.nextLine();
+    }
 	}
 	
 	public static void main(String[] args) {
-loadfromfile();
+    loadfromfile();
 	while (true){
         System.out.println(" Welcome to the register of people! \n please select a option \n 1- enter a new name and age \n 2-search a person \n 3-list \n 4-remove a person \n 5- exit ");
         if (input.hasNextInt()){
@@ -94,11 +96,11 @@ loadfromfile();
         
     case 3:
 System.out.println("--List of people-- \n \n");
-for (Map.Entry<String, Integer> entry : people.entrySet()){
-System.out.println("name: " + entry.getKey() + ", age: " + entry.getValue());  
-}
-         break;
-         
+    for (Map.Entry<String, Pessoa> entry : people.entrySet()) {
+        Pessoa pessoa = entry.getValue(); // Obtém o objeto
+        System.out.println("name: " + pessoa.getNome() + ", age: " + pessoa.getIdade());
+    }
+    break;
     case 4:
             	String removed_user = searchperson();
             	if(people.remove(removed_user.toLowerCase()) != null){
