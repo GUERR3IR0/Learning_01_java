@@ -46,7 +46,7 @@ public class Main {
     
     public static void searchPerson(){
         System.out.println("enter a name for search: ");
-        String userSearch = input.nextLine().toLowerCase();
+        String userSearch = input.nextLine().toLowerCase().replace(" ", "_");
         Person personFound = people.get(userSearch);
         if (personFound != null){
             System.out.println(userSearch + " : " + personFound.getAge() + " years");
@@ -57,10 +57,14 @@ public class Main {
     
     public static void register(){
         System.out.println("enter the name of the person: ");
-        String personName = input.nextLine().toLowerCase();
+        String personName = input.nextLine().toLowerCase().replace(" ", "_");
         System.out.println("enter the age of the person: ");
         if (input.hasNextInt()) {
             int personAge = input.nextInt();
+            if (personAge > 120 || personAge < 0){
+                System.out.println("invalid age");
+                return;
+            }
             input.nextLine();
             Person person = new Person(personName, personAge);
             people.put(personName, person);
@@ -87,15 +91,16 @@ public class Main {
                         searchPerson();
                         break;
                     case 3:
-                        System.out.println("--List of people-- \n \n");
-                        for (Map.Entry<String, Person> entry : people.entrySet()) {
-                            Person person = entry.getValue();
-                            System.out.println("name: " + person.getName() + ", age: " + person.getAge());
-                        }
-                        break;
+    System.out.println("--List of people-- \n \n");
+    for (Map.Entry<String, Person> entry : people.entrySet()) {
+        Person person = entry.getValue();
+        String displayName = person.getName().replace("_", " ");
+        System.out.println("name: " + displayName + ", age: " + person.getAge());
+    }
+    break;
                     case 4:
                         System.out.println("enter a name for remove: ");
-                        String userToRemove = input.nextLine().toLowerCase();
+                        String userToRemove = input.nextLine().toLowerCase().replace(" ", "_");
                         if(people.remove(userToRemove) != null){
                             System.out.println("The user is removed");
                         } else {
