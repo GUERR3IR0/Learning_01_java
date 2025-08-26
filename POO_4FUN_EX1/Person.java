@@ -17,4 +17,7 @@ public String getSex(){
 public String getName(){
     return Name;
 }
+public boolean getVegetariana(){
+    return Vegetariana;
+}
 }
