@@ -1,12 +1,13 @@
-public class Person{
+public class Pessoa{
     private String Name, Sex;
     private int Age;
     private boolean Vegetariana;
 
-public Person(String Name, String Sex, int Age, boolean Vegetariana){
+public Pessoa(String Name, String Sex, int Age, boolean Vegetariana){
     this.Name = Name;
     this.Age = Age;
 this.Sex = Sex;
+this.Vegetariana = Vegetariana;
 }
 public int  getAge(){
     return Age;
@@ -17,7 +18,7 @@ public String getSex(){
 public String getName(){
     return Name;
 }
-public boolean getVegetariana(){
+public  boolean getVegetariana(){
     return Vegetariana;
 }
 }

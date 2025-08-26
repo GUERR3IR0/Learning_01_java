@@ -20,5 +20,9 @@ public void setName(String newName) {
     public void setAge(int newAge) {
         this.age = newAge;
     }
+    public static boolean getVegetariana() {
+       
+        throw new UnsupportedOperationException("Unimplemented method 'getVegetariana'");
+    }
 
 }
